@@ -52,5 +52,20 @@ namespace Projects.LudumDare.Controllers
 
             return Ok(gameData);
         }
+
+        [HttpGet]
+        [Route("Games/{username}")]
+        public async Task<IActionResult> GetGamesByUsername(string username)
+        {
+            var userProfile = await _ludumDareService.GetUserProfile(username);
+
+            if (userProfile?.NodeId != null && userProfile.NodeId == 2)
+                return NotFound($"User {username} not found");
+
+            var gameFeed = await _ludumDareService.GetGameFeed(userProfile);
+            var gameData = await _ludumDareService.GetGameData(gameFeed); 
+
+            return Ok(gameData);
+        }
     }
 }
