@@ -6,6 +6,8 @@ namespace Projects.LudumDare.Services.Interfaces
     {
         public Task<UserProfile?> GetUserProfile(string username);
 
-        public Task<GameFeed> GetGameFeed(UserProfile userProfile);
+        public Task<GameFeed?> GetGameFeed(UserProfile userProfile);
+
+        public Task<GameData?> GetGameData(GameFeed gameFeed);
     }
 }

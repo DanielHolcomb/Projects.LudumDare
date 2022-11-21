@@ -34,13 +34,23 @@ namespace Projects.LudumDare.Controllers
         }
 
         [HttpPost]
-        [Route("GameFeed")]
+        [Route("Games/Feed")]
         [Authorize]
         public async Task<IActionResult> GetGamesByUserId([FromBody] UserProfile userProfile)
         {
             var gameFeed = await _ludumDareService.GetGameFeed(userProfile);
 
             return Ok(gameFeed);
+        }
+
+        [HttpPost]
+        [Route("Games/Data")]
+        [Authorize]
+        public async Task<IActionResult> GetGameDataByIds([FromBody] GameFeed gameFeed)
+        {
+            var gameData = await _ludumDareService.GetGameData(gameFeed);
+
+            return Ok(gameData);
         }
     }
 }
