@@ -23,6 +23,11 @@ namespace Projects.LudumDare.Services
             var gameIdsString = string.Join("+", gameIds);
             var gameData = await LudumDareUtils.SendLudumDareRequestAsync<GameData>(_httpClientFactory, $"https://api.ldjam.com/vx/node2/get/{gameIdsString}");
 
+            foreach(Node node in gameData.Node)
+            {
+                node.Meta.Cover = ConvertToStaticImageUrl(node.Meta.Cover, 480, 384);
+            }
+
             return gameData;
         }
 
@@ -38,6 +43,16 @@ namespace Projects.LudumDare.Services
             var userProfile = await LudumDareUtils.SendLudumDareRequestAsync<UserProfile>(_httpClientFactory, $"https://api.ldjam.com/vx/node2/walk/1/users/{username}");
 
             return userProfile;
+        }
+
+        private string ConvertToStaticImageUrl(string imageUrl, int width, int height)
+        {
+            var baseUrl = "https://static.jam.host/";
+            imageUrl = imageUrl.Substring(3, imageUrl.Length - 3);
+            var size = $"{width.ToString()}x{height.ToString()}";
+            var endUrl = $".{size}.fit.jpg";
+
+            return baseUrl + imageUrl + endUrl;
         }
     }
 }
