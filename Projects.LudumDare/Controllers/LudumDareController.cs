@@ -25,12 +25,22 @@ namespace Projects.LudumDare.Controllers
         [Authorize]
         public async Task<IActionResult> GetUserProfileId(string username)
         {
-            var userProfileResponse = await _ludumDareService.GetUserProfile(username);
+            var userProfile = await _ludumDareService.GetUserProfile(username);
 
-            if(userProfileResponse?.NodeId != null && userProfileResponse.NodeId == 2)
+            if(userProfile?.NodeId != null && userProfile.NodeId == 2)
                 return NotFound($"User {username} not found");
 
-            return Ok(userProfileResponse);
+            return Ok(userProfile);
+        }
+
+        [HttpPost]
+        [Route("GameFeed")]
+        [Authorize]
+        public async Task<IActionResult> GetGamesByUserId([FromBody] UserProfile userProfile)
+        {
+            var gameFeed = await _ludumDareService.GetGameFeed(userProfile);
+
+            return Ok(gameFeed);
         }
     }
 }

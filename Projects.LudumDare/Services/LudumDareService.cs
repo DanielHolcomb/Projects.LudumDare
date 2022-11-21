@@ -1,5 +1,6 @@
 ﻿using Projects.LudumDare.Models;
 using Projects.LudumDare.Services.Interfaces;
+using Projects.LudumDare.Utils;
 using System.Text.Json;
 
 namespace Projects.LudumDare.Services
@@ -13,22 +14,18 @@ namespace Projects.LudumDare.Services
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<UserProfileResponse?> GetUserProfile(string username)
+        public async Task<GameFeed?> GetGameFeed(UserProfile userProfile)
         {
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://api.ldjam.com/vx/node2/walk/1/users/{username}");
+            var gameFeed = await LudumDareUtils.SendLudumDareRequestAsync<GameFeed>(_httpClientFactory, $"https://api.ldjam.com/vx/node/feed/{userProfile.NodeId}/authors/item/game");
 
-            var httpClient = _httpClientFactory.CreateClient();
-            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+            return gameFeed;
+        }
 
-            UserProfileResponse? userProfileResponse = null;
+        public async Task<UserProfile?> GetUserProfile(string username)
+        {
+            var userProfile = await LudumDareUtils.SendLudumDareRequestAsync<UserProfile>(_httpClientFactory, $"https://api.ldjam.com/vx/node2/walk/1/users/{username}");
 
-            if (httpResponseMessage.IsSuccessStatusCode)
-            {
-                var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
-                userProfileResponse = await JsonSerializer.DeserializeAsync<UserProfileResponse>(contentStream);
-            }
-
-            return userProfileResponse;
+            return userProfile;
         }
     }
 }

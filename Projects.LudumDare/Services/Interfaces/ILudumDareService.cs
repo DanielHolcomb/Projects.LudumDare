@@ -4,6 +4,8 @@ namespace Projects.LudumDare.Services.Interfaces
 {
     public interface ILudumDareService
     {
-        public Task<UserProfileResponse?> GetUserProfile(string username);
+        public Task<UserProfile?> GetUserProfile(string username);
+
+        public Task<GameFeed> GetGameFeed(UserProfile userProfile);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Projects.LudumDare.Models
 {
-    public class UserProfileResponse
+    public class UserProfile
     {
         [JsonPropertyName("node_id")]
         public int NodeId { get; set; }
