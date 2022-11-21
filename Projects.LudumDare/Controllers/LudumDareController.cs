@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using Projects.LudumDare.Models;
@@ -21,6 +22,7 @@ namespace Projects.LudumDare.Controllers
 
         [HttpGet]
         [Route("User/{username}")]
+        [Authorize]
         public async Task<IActionResult> GetUserProfileId(string username)
         {
             var userProfileResponse = await _ludumDareService.GetUserProfile(username);
