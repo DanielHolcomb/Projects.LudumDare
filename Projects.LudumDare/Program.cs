@@ -1,3 +1,4 @@
+using Core.HttpDynamo;
 using Core.JwtBuilder;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -13,7 +14,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHttpClient();
+builder.Services.AddHttpDynamo();
 builder.Services.AddScoped<ILudumDareService, LudumDareService>();
 builder.Services.AddJwtBuilderAuthentication(builder.Configuration);
 

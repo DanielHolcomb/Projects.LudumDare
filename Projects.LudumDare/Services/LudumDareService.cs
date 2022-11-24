@@ -1,6 +1,6 @@
-﻿using Projects.LudumDare.Models;
+﻿using Core.HttpDynamo;
+using Projects.LudumDare.Models;
 using Projects.LudumDare.Services.Interfaces;
-using Projects.LudumDare.Utils;
 using System.Text.Json;
 
 namespace Projects.LudumDare.Services
@@ -21,7 +21,7 @@ namespace Projects.LudumDare.Services
 
             var gameIds = gameFeed.Feed.Select(x => x.Id).ToArray();
             var gameIdsString = string.Join("+", gameIds);
-            var gameData = await LudumDareUtils.SendLudumDareRequestAsync<GameData>(_httpClientFactory, $"https://api.ldjam.com/vx/node2/get/{gameIdsString}");
+            var gameData = await HttpDynamo.GetRequestAsync<GameData>(_httpClientFactory, $"https://api.ldjam.com/vx/node2/get/{gameIdsString}");
 
             foreach(Node node in gameData.Node)
             {
@@ -33,14 +33,14 @@ namespace Projects.LudumDare.Services
 
         public async Task<GameFeed?> GetGameFeed(UserProfile userProfile)
         {
-            var gameFeed = await LudumDareUtils.SendLudumDareRequestAsync<GameFeed>(_httpClientFactory, $"https://api.ldjam.com/vx/node/feed/{userProfile.NodeId}/authors/item/game");
+            var gameFeed = await HttpDynamo.GetRequestAsync<GameFeed>(_httpClientFactory, $"https://api.ldjam.com/vx/node/feed/{userProfile.NodeId}/authors/item/game");
 
             return gameFeed;
         }
 
         public async Task<UserProfile?> GetUserProfile(string username)
         {
-            var userProfile = await LudumDareUtils.SendLudumDareRequestAsync<UserProfile>(_httpClientFactory, $"https://api.ldjam.com/vx/node2/walk/1/users/{username}");
+            var userProfile = await HttpDynamo.GetRequestAsync<UserProfile>(_httpClientFactory, $"https://api.ldjam.com/vx/node2/walk/1/users/{username}");
 
             return userProfile;
         }
