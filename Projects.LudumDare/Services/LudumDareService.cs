@@ -45,6 +45,20 @@ namespace Projects.LudumDare.Services
             return userProfile;
         }
 
+        public async Task<EventData> GetEventData(int edition)
+        {
+            var eventData = await HttpDynamo.GetRequestAsync<EventData>(_httpClientFactory, $"https://api.ldjam.com/vx/node2/walk/1/events/ludum-dare/{edition}/stats?node=&parent=&_superparent=&author=");
+
+            return eventData;
+        }
+
+        public async Task<EventStats> GetEventStats(int editionId)
+        {
+            var eventStats = await HttpDynamo.GetRequestAsync<EventStats>(_httpClientFactory, $"https://api.ldjam.com/vx/stats/{editionId}");
+
+            return eventStats;
+        }
+
         private string ConvertToStaticImageUrl(string imageUrl, int width, int height)
         {
             var baseUrl = "https://static.jam.host/";

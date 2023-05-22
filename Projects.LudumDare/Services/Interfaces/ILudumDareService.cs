@@ -9,5 +9,9 @@ namespace Projects.LudumDare.Services.Interfaces
         public Task<GameFeed?> GetGameFeed(UserProfile userProfile);
 
         public Task<GameData?> GetGameData(GameFeed gameFeed);
+
+        public Task<EventData> GetEventData(int edition);
+
+        public Task<EventStats> GetEventStats(int editionId);
     }
 }

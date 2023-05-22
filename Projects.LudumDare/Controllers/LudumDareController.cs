@@ -67,5 +67,15 @@ namespace Projects.LudumDare.Controllers
 
             return Ok(gameData);
         }
+
+        [HttpGet]
+        [Route("Stats/Overall/{ludumDareEdition}")]
+        public async Task<IActionResult> GetOverallLudumDareStats(int ludumDareEdition)
+        {
+            var eventData = await _ludumDareService.GetEventData(ludumDareEdition);
+            var eventStats = await _ludumDareService.GetEventStats(eventData.NodeId);
+
+            return Ok(eventStats.Stats);
+        }
     }
 }
