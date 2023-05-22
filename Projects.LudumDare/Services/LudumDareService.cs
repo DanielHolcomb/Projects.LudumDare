@@ -26,6 +26,9 @@ namespace Projects.LudumDare.Services
             foreach(Node node in gameData.Node)
             {
                 node.Meta.Cover = ConvertToStaticImageUrl(node.Meta.Cover, 480, 384);
+                var edition = int.Parse(node.Path.Split('/')[3]);
+                var eventData = await GetEventData(edition);
+                node.EventStats = await GetEventStats(eventData.NodeId);
             }
 
             return gameData;

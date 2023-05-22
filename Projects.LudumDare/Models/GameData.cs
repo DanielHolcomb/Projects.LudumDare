@@ -268,5 +268,8 @@ namespace Projects.LudumDare.Models
 
         [JsonPropertyName("magic")]
         public Magic Magic { get; set; }
+
+        [JsonPropertyName("eventStats")]
+        public EventStats EventStats { get; set; }
     }
 }
