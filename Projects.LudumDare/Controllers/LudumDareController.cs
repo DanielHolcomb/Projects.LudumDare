@@ -69,13 +69,18 @@ namespace Projects.LudumDare.Controllers
         }
 
         [HttpGet]
-        [Route("Stats/Overall/{ludumDareEdition}")]
-        public async Task<IActionResult> GetOverallLudumDareStats(int ludumDareEdition)
+        [Route("Stats/Overall")]
+        public async Task<IActionResult> GetOverallLudumDareStats([FromQuery] List<int> ludumDareEdition)
         {
-            var eventData = await _ludumDareService.GetEventData(ludumDareEdition);
-            var eventStats = await _ludumDareService.GetEventStats(eventData.NodeId);
+            var stats = new Dictionary<int, EventStats>();
+            foreach(int id in ludumDareEdition)
+            {
+                var eventData = await _ludumDareService.GetEventData(id);
+                var eventStats = await _ludumDareService.GetEventStats(eventData.NodeId);
+                stats[id] = eventStats;
+            }
 
-            return Ok(eventStats.Stats);
+            return Ok(stats);
         }
     }
 }
