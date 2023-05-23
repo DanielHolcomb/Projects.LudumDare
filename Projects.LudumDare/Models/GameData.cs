@@ -271,5 +271,8 @@ namespace Projects.LudumDare.Models
 
         [JsonPropertyName("eventStats")]
         public EventStats EventStats { get; set; }
+
+        [JsonPropertyName("edition")]
+        public int Edition { get; set; }
     }
 }

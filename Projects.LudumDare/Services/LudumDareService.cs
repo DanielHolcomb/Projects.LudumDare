@@ -29,6 +29,7 @@ namespace Projects.LudumDare.Services
                 var edition = int.Parse(node.Path.Split('/')[3]);
                 var eventData = await GetEventData(edition);
                 node.EventStats = await GetEventStats(eventData.NodeId);
+                node.Edition = edition;
             }
 
             return gameData;
