@@ -84,6 +84,17 @@ namespace Projects.LudumDare.Models
 
         [JsonPropertyName("timestamp")]
         public DateTime Timestamp { get; set; }
+
+        public int GetCompetitors(string format)
+        {
+            switch (format)
+            {
+                case "compo": return Compo;
+                case "jam": return Jam;
+                case "extra": return Extra;
+                default: return Signups;
+            }
+        }
     }
 
 

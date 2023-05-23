@@ -135,7 +135,7 @@ namespace Projects.LudumDare.Models
         public double Smart { get; set; }
 
         [JsonPropertyName("grade-07-result")]
-        public int? Grade07Result { get; set; }
+        public int Grade07Result { get; set; }
     }
 
     public class Meta
@@ -274,5 +274,6 @@ namespace Projects.LudumDare.Models
 
         [JsonPropertyName("edition")]
         public int Edition { get; set; }
+
     }
 }
