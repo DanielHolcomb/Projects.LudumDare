@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using System.Xml.Linq;
 
 namespace Projects.LudumDare.ViewModels;
 
@@ -66,4 +67,15 @@ public class Category
 
     [JsonPropertyName("averageScore")]
     public double AverageScore { get; set; }
+
+    [JsonPropertyName("Percentile")]
+    public double Percentile { get; set; }
+
+    public static double CalculatePercentile(int categoryCompetitors, int result)
+    {
+        if (result == 0)
+            return 0;
+        else
+            return (double)(categoryCompetitors - result) / categoryCompetitors * 100;
+    }
 }
