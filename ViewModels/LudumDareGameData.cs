@@ -75,6 +75,8 @@ public class Category
     {
         if (result == 0 || result == null)
             return 0;
+        else if (result == 1)
+            return 100;
         else
             return (double)(categoryCompetitors - result) / categoryCompetitors * 100;
     }
