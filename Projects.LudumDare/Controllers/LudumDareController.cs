@@ -87,6 +87,7 @@ namespace Projects.LudumDare.Controllers
 
             foreach (var node in gameData.Node)
             {
+                var categoryCompetitors = node.EventStats.Stats.GetCompetitors(node.Subsubtype);
                 gameDataViewModel.Games.Add(new Game
                 {
                     Cover = node.Meta?.Cover,
@@ -98,52 +99,60 @@ namespace Projects.LudumDare.Controllers
                     {
                         TotalScore = node.Grade?.Grade01,
                         Result = node.Magic?.Grade01Result,
-                        AverageScore = node.Magic?.Grade01Average
+                        AverageScore = node.Magic?.Grade01Average,
+                        Percentile = Category.CalculatePercentile(categoryCompetitors, node.Magic?.Grade01Result)
                     },
                     Fun = new Category
                     {
                         TotalScore = node.Grade?.Grade02,
                         Result = node.Magic?.Grade02Result,
-                        AverageScore = node.Magic?.Grade02Average
+                        AverageScore = node.Magic?.Grade02Average,
+                        Percentile = Category.CalculatePercentile(categoryCompetitors, node.Magic?.Grade02Result)
                     },
                     Innovation = new Category
                     {
                         TotalScore = node.Grade?.Grade03,
                         Result = node.Magic?.Grade03Result,
-                        AverageScore = node.Magic?.Grade03Average
+                        AverageScore = node.Magic?.Grade03Average,
+                        Percentile = Category.CalculatePercentile(categoryCompetitors, node.Magic?.Grade03Result)
                     },
                     Theme = new Category
                     {
                         TotalScore = node.Grade?.Grade04,
                         Result = node.Magic?.Grade04Result,
-                        AverageScore = node.Magic?.Grade04Average
+                        AverageScore = node.Magic?.Grade04Average,
+                        Percentile = Category.CalculatePercentile(categoryCompetitors, node.Magic?.Grade04Result)
                     },
                     Graphics = new Category
                     {
                         TotalScore = node.Grade?.Grade05,
                         Result = node.Magic?.Grade05Result,
-                        AverageScore = node.Magic?.Grade05Average
+                        AverageScore = node.Magic?.Grade05Average,
+                        Percentile = Category.CalculatePercentile(categoryCompetitors, node.Magic?.Grade05Result)
                     },
                     Audio = new Category
                     {
                         TotalScore = node.Grade?.Grade06,
                         Result = node.Magic?.Grade06Result,
-                        AverageScore = node.Magic?.Grade06Average
+                        AverageScore = node.Magic?.Grade06Average,
+                        Percentile = Category.CalculatePercentile(categoryCompetitors, node.Magic?.Grade06Result)
                     },
                     Humor = new Category
                     {
                         TotalScore = node.Grade?.Grade07,
                         Result = node.Magic?.Grade07Result,
-                        AverageScore = node.Magic?.Grade07Average
+                        AverageScore = node.Magic?.Grade07Average,
+                        Percentile = Category.CalculatePercentile(categoryCompetitors, node.Magic?.Grade07Result)
                     },
                     Mood = new Category
                     {
                         TotalScore = node.Grade?.Grade08,
                         Result = node.Magic?.Grade08Result,
-                        AverageScore = node.Magic?.Grade08Average
+                        AverageScore = node.Magic?.Grade08Average,
+                        Percentile = Category.CalculatePercentile(categoryCompetitors, node.Magic?.Grade08Result)
                     },
                     Edition = node.Edition,
-                    CategoryCompetitors = node.EventStats.Stats.GetCompetitors(node.Subsubtype)
+                    CategoryCompetitors = categoryCompetitors
                 });
             }
 
