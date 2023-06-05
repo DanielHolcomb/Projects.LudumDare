@@ -37,7 +37,7 @@ namespace Projects.LudumDare.Services
 
         public async Task<GameFeed?> GetGameFeed(UserProfile userProfile)
         {
-            var gameFeed = await HttpDynamo.GetRequestAsync<GameFeed>(_httpClientFactory, $"https://api.ldjam.com/vx/node/feed/{userProfile.NodeId}/authors/item/game");
+            var gameFeed = await HttpDynamo.GetRequestAsync<GameFeed>(_httpClientFactory, $"https://api.ldjam.com/vx/node/feed/{userProfile.NodeId}/authors/item/game?limit=50");
 
             return gameFeed;
         }
