@@ -89,58 +89,58 @@ namespace Projects.LudumDare.Controllers
             {
                 gameDataViewModel.Games.Add(new Game
                 {
-                    Cover = node.Meta.Cover,
+                    Cover = node.Meta?.Cover,
                     Path = node.Path,
                     Name = node.Name,
                     Format = node.Subsubtype,
                     SubmittedDate = node.NodeTimestamp,
                     Overall = new Category
                     {
-                        TotalScore = node.Grade.Grade01,
-                        Result = node.Magic.Grade01Result,
-                        AverageScore = node.Magic.Grade01Average
+                        TotalScore = node.Grade?.Grade01,
+                        Result = node.Magic?.Grade01Result,
+                        AverageScore = node.Magic?.Grade01Average
                     },
                     Fun = new Category
                     {
-                        TotalScore = node.Grade.Grade02,
-                        Result = node.Magic.Grade02Result,
-                        AverageScore = node.Magic.Grade02Average
+                        TotalScore = node.Grade?.Grade02,
+                        Result = node.Magic?.Grade02Result,
+                        AverageScore = node.Magic?.Grade02Average
                     },
                     Innovation = new Category
                     {
-                        TotalScore = node.Grade.Grade03,
-                        Result = node.Magic.Grade03Result,
-                        AverageScore = node.Magic.Grade03Average
+                        TotalScore = node.Grade?.Grade03,
+                        Result = node.Magic?.Grade03Result,
+                        AverageScore = node.Magic?.Grade03Average
                     },
                     Theme = new Category
                     {
-                        TotalScore = node.Grade.Grade04,
-                        Result = node.Magic.Grade04Result,
-                        AverageScore = node.Magic.Grade04Average
+                        TotalScore = node.Grade?.Grade04,
+                        Result = node.Magic?.Grade04Result,
+                        AverageScore = node.Magic?.Grade04Average
                     },
                     Graphics = new Category
                     {
-                        TotalScore = node.Grade.Grade05,
-                        Result = node.Magic.Grade05Result,
-                        AverageScore = node.Magic.Grade05Average
+                        TotalScore = node.Grade?.Grade05,
+                        Result = node.Magic?.Grade05Result,
+                        AverageScore = node.Magic?.Grade05Average
                     },
                     Audio = new Category
                     {
-                        TotalScore = node.Grade.Grade06,
-                        Result = node.Magic.Grade06Result,
-                        AverageScore = node.Magic.Grade06Average
+                        TotalScore = node.Grade?.Grade06,
+                        Result = node.Magic?.Grade06Result,
+                        AverageScore = node.Magic?.Grade06Average
                     },
                     Humor = new Category
                     {
-                        TotalScore = node.Grade.Grade07,
-                        Result = node.Magic.Grade07Result,
-                        AverageScore = node.Magic.Grade07Average
+                        TotalScore = node.Grade?.Grade07,
+                        Result = node.Magic?.Grade07Result,
+                        AverageScore = node.Magic?.Grade07Average
                     },
                     Mood = new Category
                     {
-                        TotalScore = node.Grade.Grade08,
-                        Result = node.Magic.Grade08Result,
-                        AverageScore = node.Magic.Grade08Average
+                        TotalScore = node.Grade?.Grade08,
+                        Result = node.Magic?.Grade08Result,
+                        AverageScore = node.Magic?.Grade08Average
                     },
                     Edition = node.Edition,
                     CategoryCompetitors = node.EventStats.Stats.GetCompetitors(node.Subsubtype)

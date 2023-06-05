@@ -66,7 +66,7 @@ namespace Projects.LudumDare.Services
         private string ConvertToStaticImageUrl(string imageUrl, int width, int height)
         {
             var baseUrl = "https://static.jam.host/";
-            imageUrl = imageUrl.Substring(3, imageUrl.Length - 3);
+            imageUrl = imageUrl?.Substring(3, imageUrl.Length - 3);
             var size = $"{width.ToString()}x{height.ToString()}";
             var endUrl = $".{size}.fit.jpg";
 

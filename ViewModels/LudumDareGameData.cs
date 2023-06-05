@@ -59,11 +59,11 @@ public class Game
 public class Category
 {
     [JsonPropertyName("totalScore")]
-    public int TotalScore { get; set; }
+    public int? TotalScore { get; set; }
 
     [JsonPropertyName("place")]
-    public int Result { get; set; }
+    public int? Result { get; set; }
 
     [JsonPropertyName("averageScore")]
-    public double AverageScore { get; set; }
+    public double? AverageScore { get; set; }
 }

@@ -92,6 +92,7 @@ namespace Projects.LudumDare.Models
                 case "compo": return Compo;
                 case "jam": return Jam;
                 case "extra": return Extra;
+                case "unfinished": return Unfinished;
                 default: return Signups;
             }
         }
